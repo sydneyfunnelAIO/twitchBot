@@ -1,6 +1,6 @@
 var tmi = require('tmi.js')
 var fs = require('fs')
-var channel = "sydneyfunnelaio"
+var channel = "theokoles"
 async function readline(file)
 {
     var fileStream = fs.createReadStream(file);
