@@ -94,7 +94,7 @@ client.on("chat",(channel, userstate, message, self)=>{
 })
 setInterval(function(){
    client.say(channel,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com" )
-  }, 1000*60*5); 
+  }, 1000*60*10); 
   setInterval(function(){
     client.say(channel,"Abone olarak bize Destekte bulunabilir Ayrıca asagidaki linklerden bagista bulunabilirsiniz!" )
-   }, 1000*60*7);     
+   }, 1000*60*18);     
