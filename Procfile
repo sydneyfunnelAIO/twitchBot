@@ -1,2 +1,2 @@
-web: node pages/index.js
+web: npm run dev
 worker: node run.js
