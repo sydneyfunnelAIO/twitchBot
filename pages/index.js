@@ -20,12 +20,12 @@ export default function Home() {
         <div className="grid">
           <a  className="card">
             <h3>About Me &rarr;</h3>
-            <p>Working on Backend systems via Nodejs / C# /Ruby</p>
+            <p>Working on Back-end systems via Nodejs / C# /Ruby</p>
           </a>
 
           <a  className="card">
             <h3>My Mission &rarr;</h3>
-            <p>Everyone can create them own Bots via own Names. 100% customisable Bots</p>
+            <p>Everyone should create them own Bots via own Names. 100% customisable Bots</p>
           </a>
 
 
