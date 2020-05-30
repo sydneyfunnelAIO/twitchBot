@@ -1,12 +1,11 @@
 var tmi = require('tmi.js')
 var fs = require('fs')
-var channel = "theokoles"
-async function readline(file)
-{
-    var fileStream = fs.createReadStream(file);
+var channe = fs.readFileSync('channels.json', 'utf8')
+var channels = channe.split(/\r?\n/)
+var x;
 
-
-}
+for( x = 0; x < channels.length; x++){
+var channel = channels[x];
 var config = {
     options: {
         debug: true
@@ -23,66 +22,46 @@ var config = {
 
     channels: [channel]
 }
+try{
+    if (fs.existsSync(`./#${channel}command.json`)) {
+        
+      }
+      else{
+fs.writeFile(`#${channel}command.json`, '!test', function (err) {
+    if (err) throw err;
+    console.log('File is created successfully.');
+  });
+}
+}
+catch(err) {
+    console.error(err)
+  }
+  try{
+    if (fs.existsSync(`./#${channel}response.json`)) {
+        
+      }
+      else{
+fs.writeFile(`#${channel}response.json`, 'This is a test Text', function (err) {
+    if (err) throw err;
+    console.log('File is created successfully.');
+  });
+}
+}
+catch(err) {
+    console.error(err)
+  }
+  var client = new tmi.client(config)
+  client.connect()
 
-var client = new tmi.client(config)
-client.connect();
-client.on("connected",(address,port)=> {
-client.say(channel, "Connected|Sydneybot " )
-})
-client.on("chat",(channel, userstate, message, self)=>{
-    var command = fs.readFileSync('command.txt', 'utf8')
-    var response = fs.readFileSync('response.txt', 'utf8')
+  client.on("chat", (channel, userstate, message, self) =>{
+    if(self) return;
+    var mes = message.split(" ")
+    var command = fs.readFileSync(`./${channel}command.json`, 'utf8')
+    var response = fs.readFileSync(`./${channel}response.json`, 'utf8')
     var res = response.split(/\r?\n/)
     var com = command.split(/\r?\n/)
      var comint = com.length
-    var mes = message.split(" ")
-    var a = mes.slice(2,comint)
-    if(self) return;
-    if(userstate['mod'] == true && mes[0] == "!add" ){
-        fs.appendFile('command.txt', "\n"+mes[1], function (err) {
-            if (err) {
-                client.say(channel,  err)
-            } else {
-                client.say(channel,  mes[1] +" basariyla eklendi!")
-            }
-          })
-          fs.appendFile('response.txt', "\n"+a, function (err) {
-            if (err) {
-                client.say(channel,  err)
-            } else {
-              // done
-            }
-          })
-    
-        
-    }
-    if(userstate['mod']== true &&mes[0]== "!del" ){
-        
-    let lastIndex = -1;  
-
-    for (let index=0; index<com.length; index++) {
-        if (com[index] == mes[1] ) { 
-            lastIndex = index; 
-            break; 
-        }
-    }
-    com.splice(lastIndex, 1);
-    res.splice(lastIndex, 1);
-    const updatedcom = com.join('\n');
-    const updatedres = res.join('\n');
-    fs.writeFile('command.txt', updatedcom, (err) => {
-        if (err) throw err;
-        client.say(channel,mes[1] + " Basariyla silindi")
-
-    });
-    fs.writeFile('response.txt', updatedres, (err) => {
-        if (err) throw err;
-        
-
-    });
-
-
-    }
+     var a = mes.slice(2,comint)
     for (var index = 0; index < comint; index++) {
         var comm = com[index]
         var respon = res[index]
@@ -91,10 +70,57 @@ client.on("chat",(channel, userstate, message, self)=>{
         client.say(channel, respon)
         }
         }
-})
-setInterval(function(){
-   client.say(channel,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com" )
-  }, 1000*60*10); 
-  setInterval(function(){
-    client.say(channel,"Abone olarak bize Destekte bulunabilir Ayrıca asagidaki linklerden bagista bulunabilirsiniz!" )
-   }, 1000*60*18);     
+        if(userstate['mod'] == true && mes[0] == "!add" ){
+            fs.appendFile(`${channel}command.json`, "\n"+mes[1], function (err) {
+                if (err) {
+                    client.say(channel,  err)
+                } else {
+                    client.say(channel,  mes[1] +" basariyla eklendi!")
+                }
+              })
+              fs.appendFile(`${channel}response.json`, "\n"+ a, function (err) {
+                if (err) {
+                    client.say(channel,  err)
+                } else {
+                  // done
+                }
+              })
+        
+            
+        }
+        if(userstate['mod']== true &&mes[0]== "!del" ){
+            
+        let lastIndex = -1;  
+    
+        for (let index=0; index<com.length; index++) {
+            if (com[index] == mes[1] ) { 
+                lastIndex = index; 
+                break; 
+            }
+        }
+        com.splice(lastIndex, 1);
+        res.splice(lastIndex, 1);
+        const updatedcom = com.join('\n');
+        const updatedres = res.join('\n');
+        fs.writeFile(`${channel}command.json`, updatedcom, (err) => {
+            if (err) throw err;
+            client.say(channel,mes[1] + " Basariyla silindi")
+    
+        });
+        fs.writeFile(`${channel}response.json`, updatedres, (err) => {
+            if (err) throw err;
+            
+    
+        });
+    
+    
+        }
+
+  } )
+    setInterval(function(){
+       client.say(channel, "Aşağıdaki linklerden bize destekte bulunabilirsiniz!" )
+    }, 10 * 60 * 1000);
+    setInterval(function(){
+        client.say(channel, "SydneyfunnelAIO Tarafindan Uretildi! iletisim: sydneyfunnelallinone@gmail.com  " )
+    }, 13 * 60 * 1000);
+}
