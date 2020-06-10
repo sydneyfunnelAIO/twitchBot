@@ -61,7 +61,7 @@ catch(err) {
     var res = response.split(/\r?\n/)
     var com = command.split(/\r?\n/)
      var comint = com.length
-     var a = mes.slice(2,comint)
+     var a = mes.slice(2,comint).join(" ");
     for (var index = 0; index < comint; index++) {
         var comm = com[index]
         var respon = res[index]
