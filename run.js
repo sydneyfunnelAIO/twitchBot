@@ -124,8 +124,8 @@ catch(err) {
 
 
 channels.forEach(function(entry) {
-    setInterval(bot1,1000*60*2)
-    setInterval(bot2,1000*60*1)
+    setInterval(bot1,1000*60*6)
+    setInterval(bot2,1000*60*9)
     function bot1() {
         client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com");
     }
