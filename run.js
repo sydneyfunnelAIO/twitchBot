@@ -5,7 +5,7 @@ var channels = channe.split(/\r?\n/)
 var x;
 
 for( x = 0; x < channels.length; x++){
-var channel = channels[x];
+    var channel = channels[x];
 var config = {
     options: {
         debug: true
@@ -67,7 +67,7 @@ catch(err) {
         var respon = res[index]
        
         if(mes[0] == comm){
-        client.say(channel, respon)
+        client.say(channel, "@"+userstate['username'] +" "+respon)
         }
         }
         if(userstate['mod'] == true && mes[0] == "!add" ){
@@ -117,10 +117,20 @@ catch(err) {
         }
 
   } )
-    setInterval(function(){
-       client.say(channel, "Aşağıdaki linklerden bize destekte bulunabilirsiniz!" )
-    }, 10 * 60 * 1000);
-    setInterval(function(){
-        client.say(channel, "SydneyfunnelAIO Tarafindan Uretildi! iletisim: sydneyfunnelallinone@gmail.com  " )
-    }, 13 * 60 * 1000);
+
+
+
 }
+
+
+channels.forEach(function(entry) {
+    setInterval(bot1,1000*60*2)
+    setInterval(bot2,1000*60*1)
+    function bot1() {
+        client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com");
+    }
+    function bot2() {
+        client.say(entry,"Aşağıdaki linklerden bize bağışta bulunabilirsiniz :) ");
+    }
+
+});
