@@ -130,7 +130,8 @@ channels.forEach(function(entry) {
         client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com");
     }
     function bot2() {
-        client.say(entry,"Aşağıdaki linklerden bize bağışta bulunabilirsiniz :) ");
+        client.say(entry,"Aşağıdaki linklerden bize bağışta bulunabilirsiniz :) https://www.bynogame.com/destekle/theokoles - https://www.oyunfor.com/twitch-donate/theokoles - https://streamelements.com/theokoles/tip + https://www.perdigital.com/yayinciya-destek/theokoles" +
+            " ");
     }
 
 });
