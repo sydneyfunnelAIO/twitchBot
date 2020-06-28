@@ -61,7 +61,7 @@ catch(err) {
     var res = response.split(/\r?\n/)
     var com = command.split(/\r?\n/)
      var comint = com.length
-     var a = mes.slice(2,comint).join(" ");
+     var a = mes.slice(2,1000000).join(" ");
     for (var index = 0; index < comint; index++) {
         var comm = com[index]
         var respon = res[index]
@@ -70,7 +70,7 @@ catch(err) {
         client.say(channel, "@"+userstate['username'] +" "+respon)
         }
         }
-        if(userstate['mod'] == true && mes[0] == "!add" ){
+        if(userstate['mod']== true && mes[0] == "!add" ){
             fs.appendFile(`${channel}command.json`, "\n"+mes[1], function (err) {
                 if (err) {
                     client.say(channel,  err)
