@@ -70,7 +70,7 @@ catch(err) {
         client.say(channel, "@"+userstate['username'] +" "+respon)
         }
         }
-        if(userstate['mod']== true && mes[0] == "!add" ){
+        if(userstate['mod']== true &&mes[0] == "!add" ){
             fs.appendFile(`${channel}command.json`, "\n"+mes[1], function (err) {
                 if (err) {
                     client.say(channel,  err)
@@ -124,8 +124,9 @@ catch(err) {
 
 
 channels.forEach(function(entry) {
-    setInterval(bot1,1000*60*6)
-    setInterval(bot2,1000*60*9)
+    setInterval(bot1,1000*60*15)
+    setInterval(bot2,1000*60*11)
+    setInterval(bot3,1000*60*6)
     function bot1() {
         client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com");
     }
@@ -134,6 +135,9 @@ channels.forEach(function(entry) {
             "https://www.bynogame.com/destekle/theokoles - https://www.oyunfor.com/twitch-donate/theokoles" +
 
             " ");
+    }
+    function bot3() {
+        client.say(entry,"Gamerlara özel tasarım ürünleri www.gamerwo.com , instagram.com/gamerwo34");
     }
 
 });
