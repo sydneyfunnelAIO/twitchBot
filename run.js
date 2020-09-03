@@ -52,6 +52,9 @@ catch(err) {
   }
   var client = new tmi.client(config)
   client.connect()
+  client.on("subscription", (channel, username, method, message, userstate) => {
+    client.say(channel, '@'+username+'abone oldugun icin tesekkurler <3' )
+});
 
   client.on("chat", (channel, userstate, message, self) =>{
     if(self) return;
