@@ -134,7 +134,7 @@ channels.forEach(function(entry) {
     setInterval(bot2,1000*60*11)
     setInterval(bot3,1000*60*6)
     function bot1() {
-        client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> iletisim : sydneyfunnelallinone@gmail.com");
+        client.say(entry,"SydneyfunnelAIO tarafından üretildi! -> website: https://sydneyfunnel.herokuapp.com/ iletisim : sydneyfunnelallinone@gmail.com");
     }
     function bot2() {
         client.say(entry,"Aşağıdaki linklerden bize bağışta bulunabilirsiniz :) " +
