@@ -143,7 +143,7 @@ channels.forEach(function(entry) {
             " ");
     }
     function bot3() {
-        client.say(entry,"Gamerlara özel tasarım ürünleri www.gamerwo.com , instagram.com/gamerwo34");
+        client.say(entry,"Gamerlara özel tasarım ürünleri www.gamerwo.com , https://www.instagram.com/gamerwo_/ ");
     }
 
 });
