@@ -2,6 +2,7 @@ var tmi = require('tmi.js')
 var fs = require('fs')
 var channe = fs.readFileSync('channels.json', 'utf8')
 var channels = channe.split(/\r?\n/)
+var axios = require('axios')
 var x;
 
 for( x = 0; x < channels.length; x++){
@@ -76,6 +77,22 @@ catch(err) {
         client.say(channel, "@"+userstate['username'] +" "+respon)
         }
         }
+        if(mes[0]=='!music'){
+           var chan = channel.split('#')[1]
+           console.log(chan)
+            axios.get(`https://spoti-bot-server.herokuapp.com/api/v1/spotify/${chan}`).then((resp)=> {
+                let vals = []
+                console.log(resp.data.item)
+                for(var item of resp.data.item.artists){
+                    vals.push(item.name);
+                }
+                let music = resp.data.item.name
+                let singer = vals.join(' & ');
+                client.say(channel, '@'+ userstate['username'] + ' '+ singer + ' - ' + music)
+            }).catch(err=> console.log(err))
+           
+        }
+
         if(userstate['mod']== true &&mes[0] == "!add" ){
             fs.appendFile(`${channel}command.json`, "\n"+mes[1], function (err) {
                 if (err) {
