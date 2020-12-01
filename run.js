@@ -4,6 +4,7 @@ var channe = fs.readFileSync('channels.json', 'utf8')
 var channels = channe.split(/\r?\n/)
 var axios = require('axios')
 var x;
+require('dotenv').config()
 
 for( x = 0; x < channels.length; x++){
     var channel = channels[x];
@@ -92,7 +93,20 @@ catch(err) {
             }).catch(err=> console.log(err))
            
         }
-
+        if(mes[0]=='!rank'){
+            var chan = channel.split('#')[1]
+            console.log(chan)
+           try {
+            axios.get(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Ward%20Riverr?api_key=${process.env.RIOT_API_KEY}`).then((response)=> {
+                axios.get(`https://euw1.api.riotgames.com/tft/league/v1/entries/by-summoner/${response.data.id}?api_key=${process.env.RIOT_API_KEY}`).then((resp)=> {
+                    client.say(channel, "@" + userstate['username'] + " " + resp.data[0].tier +" "+ resp.data[0].rank + ` ${resp.data[0].leaguePoints} LP`);
+                }).catch(err=> console.log(err))
+        })
+           } catch (error) {
+               console.log(error)
+           }
+            
+         }
         if(userstate['mod']== true &&mes[0] == "!add" ){
             fs.appendFile(`${channel}command.json`, "\n"+mes[1], function (err) {
                 if (err) {
