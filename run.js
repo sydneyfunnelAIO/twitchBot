@@ -4,7 +4,6 @@ var channe = fs.readFileSync('channels.json', 'utf8')
 var channels = channe.split(/\r?\n/)
 var axios = require('axios')
 var x;
-require('dotenv').config()
 
 for( x = 0; x < channels.length; x++){
     var channel = channels[x];
