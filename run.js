@@ -96,7 +96,7 @@ catch(err) {
             var chan = channel.split('#')[1]
             console.log(chan)
            try {
-            axios.get(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Taktikoles?api_key=${process.env.RIOT_API_KEY}`).then((response)=> {
+            axios.get(`https://euw1.api.riotgames.com/tft/summoner/v1/summoners/by-name/Taktikoles?api_key=${process.env.RIOT_API_KEY}`).then((response)=> {
                 axios.get(`https://euw1.api.riotgames.com/tft/league/v1/entries/by-summoner/${response.data.id}?api_key=${process.env.RIOT_API_KEY}`).then((resp)=> {
                     client.say(channel, "@" + userstate['username'] + " " + resp.data[0].tier +" "+ resp.data[0].rank + ` ${resp.data[0].leaguePoints} LP`);
                 }).catch(err=> console.log(err))
